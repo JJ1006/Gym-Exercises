@@ -14,12 +14,12 @@ const SearchExercises = ({ setExercises, bodyPart, setBodyPart }) => {
     const fetchExercisesData = async () => {
       const bodyPartsData = await fetchData('https://exercisedb.p.rapidapi.com/exercises/bodyPartList', exerciseOptions);
 
-      setBodyParts(['all',...bodyPartsData]);
+      setBodyParts(['all', ...bodyPartsData]);
     }
 
     fetchExercisesData();
   }, [])
-  
+
 
   const handleSearch = async () => {
     if (search) {
@@ -27,21 +27,21 @@ const SearchExercises = ({ setExercises, bodyPart, setBodyPart }) => {
 
       const searchedExercises = exerciseData.filter(
         (exercise) => exercise.name.toLowerCase().includes(search)
-        || exercise.target.toLowerCase().includes(search)
-        || exercise.equipment.toLowerCase().includes(search)
-        || exercise.bodyPart.toLowerCase().includes(search)
+          || exercise.target.toLowerCase().includes(search)
+          || exercise.equipment.toLowerCase().includes(search)
+          || exercise.bodyPart.toLowerCase().includes(search)
       )
 
       console.log("I am before");
       console.log(exerciseData);
       console.log(searchedExercises);
 
-        setSearch('');
-        setExercises(searchedExercises);
+      setSearch('');
+      setExercises(searchedExercises);
 
     }
   }
-  
+
   return (
     <Stack alignItems="center" mt="37px" justifyContent="center" p="20px">
 
@@ -57,7 +57,7 @@ const SearchExercises = ({ setExercises, bodyPart, setBodyPart }) => {
         position="relative"
         mb="72px">
 
-<TextField
+        <TextField
           height="76px"
           sx={{ input: { fontWeight: '700', border: 'none', borderRadius: '4px' }, width: { lg: '1170px', xs: '350px' }, backgroundColor: '#fff', borderRadius: '40px' }}
           value={search}
@@ -67,25 +67,25 @@ const SearchExercises = ({ setExercises, bodyPart, setBodyPart }) => {
         />
 
         <Button className='search-btn'
-        sx={{
-          bgcolor: '#FF2625',
-          color: '#fff',
-          textTransform: 'none',
-          width: { lg: '175px', xs: '80px'},
-          fontSize: { lg: '20px', xs: '14px'},
-          height: '56px',
-          position: "absolute",
-          right: '0',
-        }}
-        onClick={handleSearch}
+          sx={{
+            bgcolor: '#FF2625',
+            color: '#fff',
+            textTransform: 'none',
+            width: { lg: '175px', xs: '80px' },
+            fontSize: { lg: '20px', xs: '14px' },
+            height: '56px',
+            position: "absolute",
+            right: '0',
+          }}
+          onClick={handleSearch}
         >
-        Search
+          Search
         </Button>
 
       </Box>
 
-      <Box sx={{position: 'relative', width: '100%', p: '20px'}}>
-        <HorizontalScrollBar data = {bodyParts} bodyPart={bodyPart} setBodyPart = {setBodyPart} />
+      <Box sx={{ position: 'relative', width: '100%', p: '20px' }}>
+        <HorizontalScrollBar data={bodyParts} bodyPart={bodyPart} setBodyPart={setBodyPart} />
       </Box>
 
     </Stack>
