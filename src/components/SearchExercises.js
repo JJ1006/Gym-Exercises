@@ -23,22 +23,25 @@ const SearchExercises = ({ setExercises, bodyPart, setBodyPart }) => {
 
   const handleSearch = async () => {
     if (search) {
+      // Fetch exercise data from API
       const exerciseData = await fetchData('https://exercisedb.p.rapidapi.com/exercises', exerciseOptions);
-
+  
+      // Filter exercise data based on search query
       const searchedExercises = exerciseData.filter(
         (exercise) => exercise.name.toLowerCase().includes(search)
           || exercise.target.toLowerCase().includes(search)
           || exercise.equipment.toLowerCase().includes(search)
           || exercise.bodyPart.toLowerCase().includes(search)
       )
-
+  
+      // Log exercise data and searched exercises to console
       console.log("I am before");
       console.log(exerciseData);
       console.log(searchedExercises);
-
+  
+      // Clear search input and update exercises state variable with searched exercises
       setSearch('');
       setExercises(searchedExercises);
-
     }
   }
 
